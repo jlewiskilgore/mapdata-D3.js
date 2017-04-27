@@ -6,7 +6,7 @@ d3.json(dataUrl, function(json) {
 	console.log(dataSet);
 
 	var height = 600;
-	var width = 600;
+	var width = 800;
 
 	d3.select(".mapdata-title").text("Map of Global Meteorite Landings");
 
@@ -22,5 +22,14 @@ d3.json(dataUrl, function(json) {
 		.attr("class", "map");
 
 	var path = d3.geoPath().projection(projection);
+
+	d3.json("https://raw.githubusercontent.com/enjalot/intro-d3/master/maptime/data/world110.json", function(error, topology) {
+		svg.append("g")
+			.selectAll("path")
+			.data(topojson.feature(topology, topology.objects.countries).features)
+			.enter()
+			.append("path")
+			.attr("d", path)
+	});
 
 })
