@@ -12,14 +12,14 @@ d3.json(dataUrl, function(json) {
 
 	var projection = d3.geoMercator()
 		.scale(100)
-		.translate([width/2, height/2]);
+		.translate([width/2, height/2])
+		.center([0, 0]);
 
 	var svg = d3.select(".mapdata")
 		.append("svg")
 		.attr("width", width)
 		.attr("height", height)
-		.append("g")
-		.attr("class", "map");
+		.append("g");
 
 	var path = d3.geoPath().projection(projection);
 

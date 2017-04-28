@@ -9,6 +9,7 @@ body {
 }
 
 .mapdata {
+	width: 800px;
 	background-color: white;
 	display: block;
 	margin: auto;
