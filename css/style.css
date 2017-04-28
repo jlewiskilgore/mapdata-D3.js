@@ -1,5 +1,5 @@
 body {
-	background-color: green;
+	background-color: wheat;
 }
 
 .mapdata-title {
@@ -9,8 +9,8 @@ body {
 }
 
 .mapdata {
-	width: 800px;
-	background-color: white;
+	width: 1200px;
+	background-color: lightskyblue;
 	display: block;
 	margin: auto;
 }
