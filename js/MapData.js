@@ -5,14 +5,14 @@ d3.json(dataUrl, function(json) {
 
 	console.log(dataSet);
 
-	var height = 675;
+	var height = 700;
 	var width = 1200;
 
 	d3.select(".mapdata-title").text("Map of Global Meteorite Landings");
 
 	var projection = d3.geoMercator()
 		.scale(130)
-		.translate([width/2, height/2 + 50])
+		.translate([width/2, height/2 + 30])
 		.center([0, 0]);
 
 	var svg = d3.select(".mapdata")
@@ -30,7 +30,15 @@ d3.json(dataUrl, function(json) {
 			.enter()
 			.append("path")
 			.attr("d", path)
-			.attr("fill", "mediumseagreen")
+			.attr("fill", "mediumseagreen");
+
+		svg.append("g")
+			.selectAll(".meteorite")
+			.data(dataSet.features)
+			.enter()
+			.append("path")
+			.attr("d", path.pointRadius(1))
+			.attr("fill", "yellow");
 	});
 
 })
