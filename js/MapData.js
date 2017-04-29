@@ -43,7 +43,19 @@ d3.json(dataUrl, function(json) {
 			.enter()
 			.append("path")
 			.attr("d", path.pointRadius(2))
-			.attr("fill", "yellow")
+			.attr("fill", function(d) {
+				console.log(d.properties.mass);
+				if(d.properties.mass <= 1500)
+					return "pink";
+				else if(d.properties.mass <= 5000)
+					return "yellow"
+				else if(d.properties.mass <= 12500)
+					return "orange";
+				else if(d.properties.mass <= 25000)
+					return "red";
+				else
+					return "red";
+			})
 			.on("mouseover", function(d) {
 				tooltip.transition()
 					.duration(200)
