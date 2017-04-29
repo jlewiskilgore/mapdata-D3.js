@@ -10,6 +10,11 @@ d3.json(dataUrl, function(json) {
 
 	d3.select(".mapdata-title").text("Map of Global Meteorite Landings");
 
+	var tooltip = d3.select(".mapdata-title")
+		.append("div")
+		.attr("class", "tooltip")
+		.style("opacity", 0);
+
 	var projection = d3.geoMercator()
 		.scale(130)
 		.translate([width/2, height/2 + 30])
@@ -37,8 +42,23 @@ d3.json(dataUrl, function(json) {
 			.data(dataSet.features)
 			.enter()
 			.append("path")
-			.attr("d", path.pointRadius(1))
-			.attr("fill", "yellow");
+			.attr("d", path.pointRadius(2))
+			.attr("fill", "yellow")
+			.on("mouseover", function(d) {
+				tooltip.transition()
+					.duration(200)
+					.style("opacity", 1);
+
+				tooltip.html("HELLO" + "<br/>"
+					+ "WORLD!")
+					.style("left", (d3.event.pageX) + "px")
+					.style("top", (d3.event.pageY) + "px");
+			})
+			.on("mouseout", function(d) {
+				tooltip.transition()
+					.duration(200)
+					.style("opacity", 0);
+			});
 	});
 
 })

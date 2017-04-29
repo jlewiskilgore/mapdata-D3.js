@@ -8,6 +8,15 @@ body {
 	margin-bottom: 25px;
 }
 
+div .tooltip {
+	position: absolute;
+	text-align: center;
+	width: auto;
+	height: auto;
+	border: 0px;
+	pointer-events: none;
+}
+
 .mapdata {
 	width: 1200px;
 	background-color: lightskyblue;
