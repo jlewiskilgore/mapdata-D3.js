@@ -29,6 +29,8 @@ d3.json(dataUrl, function(json) {
 	var path = d3.geoPath().projection(projection);
 
 	d3.json("https://raw.githubusercontent.com/enjalot/intro-d3/master/maptime/data/world110.json", function(error, topology) {
+		var colorLegend = ["pink", "yellow", "orange", "red", "black"];
+
 		svg.append("g")
 			.selectAll("path")
 			.data(topojson.feature(topology, topology.objects.countries).features)
@@ -46,15 +48,15 @@ d3.json(dataUrl, function(json) {
 			.attr("fill", function(d) {
 				console.log(d.properties.mass);
 				if(d.properties.mass <= 1500)
-					return "pink";
+					return colorLegend[0];
 				else if(d.properties.mass <= 5000)
-					return "yellow"
+					return colorLegend[1];
 				else if(d.properties.mass <= 12500)
-					return "orange";
+					return colorLegend[2];
 				else if(d.properties.mass <= 25000)
-					return "red";
+					return colorLegend[3];
 				else
-					return "red";
+					return colorLegend[4];
 			})
 			.on("mouseover", function(d) {
 				tooltip.transition()
@@ -72,6 +74,22 @@ d3.json(dataUrl, function(json) {
 					.duration(200)
 					.style("opacity", 0);
 			});
+
+		// Legend for Meteor Data Point Colors
+		for(var i = 0; i < colorLegend.length; i++) {
+			svg.append("circle")
+				.attr("r", 5)
+				.attr("cx", 50)
+				.attr("cy", 300 + (20*i))
+				.style("fill", colorLegend[i])
+		}
+
+		svg.append("text").attr("x", 50).attr("y", 285).text("Meteorite Colors");
+		svg.append("text").attr("x", 60).attr("y", 305).text("< 1500 kg");
+		svg.append("text").attr("x", 60).attr("y", 325).text("< 5000 kg");
+		svg.append("text").attr("x", 60).attr("y", 345).text("< 12500 kg");
+		svg.append("text").attr("x", 60).attr("y", 365).text("< 25000 kg");
+		svg.append("text").attr("x", 60).attr("y", 385).text("> 25000 kg");
 	});
 
 })
