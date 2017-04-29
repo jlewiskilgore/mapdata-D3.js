@@ -15,6 +15,7 @@ div .tooltip {
 	height: auto;
 	border: 0px;
 	pointer-events: none;
+	background-color: grey;
 }
 
 .mapdata {

@@ -49,8 +49,9 @@ d3.json(dataUrl, function(json) {
 					.duration(200)
 					.style("opacity", 1);
 
-				tooltip.html("HELLO" + "<br/>"
-					+ "WORLD!")
+				tooltip.html("Name: " + d.properties.name + "<br/>"
+					+ "Mass: " + d.properties.mass + " kg" + "<br/>"
+					+ "Year: " + (new Date(d.properties.year)).getFullYear())
 					.style("left", (d3.event.pageX) + "px")
 					.style("top", (d3.event.pageY) + "px");
 			})
